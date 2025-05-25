@@ -7,15 +7,9 @@ import { Container, Form, Button } from "react-bootstrap";
 import CustomNavbar from "./components/Navbar";
 import RepoForm from "./components/RepoForm";
 
-const API_URL = "http://130.238.27.123/predict"; // TODO: Replace with real URL
-const COMMON_LANGUAGES = [
-  "Python",
-  "JavaScript",
-  "Java",
-  "C++",
-  "Go",
-  "TypeScript",
-];
+// const API_URL = "http://130.238.27.123/predict";
+const API_URL = "/api/proxy";
+
 
 export default function Home() {
   const router = useRouter();
@@ -122,13 +116,13 @@ export default function Home() {
 
       for (const form of formsData) {
         const payload = calculateFeatures(form);
-        console.log("POST Payload: ", payload);
+        // console.log("POST Payload: ", payload);
 
         const response = await axios.post(API_URL, payload, {
           headers: { "Content-Type": "application/json" },
         });
 
-        console.log("Response: ", response.data);
+        // console.log("Response: ", response.data);
 
         results.push({
           name: form.name || "Unnamed Repo",
